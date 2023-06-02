@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net40</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>番茄土豆</Authors>
     <PackageProjectUrl>https://github.com/theyangfan/Berry.DocxViewer</PackageProjectUrl>
     <Description>一款用于浏览 Word 2007+ (.docx) 文档的 WPF 控件库，基于 Berry.Docx.Visual 项目开发。
@@ -14,13 +14,9 @@ A WPF control library for browsing Word 2007+ (.docx) documents, based on Berry.
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/theyangfan/Berry.DocxViewer</RepositoryUrl>
     <PackageTags>word, docx, openxml, office, word viewer, docx viewer, word browser, docx browser</PackageTags>
-    <PackageReleaseNotes>支持显示页面、段落和文本字符 (Supports pages、paragraphs and characters)。</PackageReleaseNotes>
+    <PackageReleaseNotes>支持嵌入式图片 (Supports inline pictures)。</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Berry.Docx.Visual" Version="1.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
@@ -39,6 +35,10 @@ A WPF control library for browsing Word 2007+ (.docx) documents, based on Berry.
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Berry.Docx.Visual" Version="1.0.1" />
   </ItemGroup>
 
 </Project>
