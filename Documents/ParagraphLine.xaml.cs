@@ -41,12 +41,25 @@ namespace Berry.DocxViewer.Documents
             UIGrid.HorizontalAlignment = line.HorizontalAlignment.Convert<HorizontalAlignment>();
 
             int index = 0;
-            foreach (var c in line.Characters)
+            foreach (var item in line.ChildItems)
             {
-                Character character = new Character(c);
-                UIGrid.Children.Add(character);
-                UIGrid.ColumnDefinitions.Add(new ColumnDefinition() { MinWidth = c.Width });
-                Grid.SetColumn(character, index++);
+                if(item is Docx.Visual.Field.Character)
+                {
+                    var c = (Docx.Visual.Field.Character)item;
+                    Character character = new Character(c);
+                    UIGrid.Children.Add(character);
+                    UIGrid.ColumnDefinitions.Add(new ColumnDefinition() { MinWidth = c.Width });
+                    Grid.SetColumn(character, index++);
+                }
+                else if(item is Docx.Visual.Field.Picture)
+                {
+                    var pic = (Docx.Visual.Field.Picture)item;
+                    Picture picture = new Picture(pic);
+                    UIGrid.Children.Add(picture);
+                    UIGrid.ColumnDefinitions.Add(new ColumnDefinition() { MinWidth = pic.Width });
+                    Grid.SetColumn(picture, index++);
+                }
+                
             }
 
         }

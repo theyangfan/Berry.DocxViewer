@@ -71,13 +71,13 @@
                        Name="UITotalPage"
                        Padding="0"
                        HorizontalContentAlignment="Center"
-                       VerticalContentAlignment="Center">共 1 页</Label>
-                
+                       VerticalContentAlignment="Center"></Label>
+
                 <Label Grid.Column="2" 
                        Name="UIScale"
                        Padding="0"
                        HorizontalContentAlignment="Center" 
-                       VerticalContentAlignment="Center">100%</Label>
+                       VerticalContentAlignment="Center"></Label>
             </Grid>
         </Grid>
     </Grid>

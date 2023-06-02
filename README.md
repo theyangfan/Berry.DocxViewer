@@ -8,9 +8,9 @@ A WPF control library for browsing Word 2007+ (.docx) documents, based on the [B
 
 
 
-本项目是参照文档在 Microsoft Office Word 2016 中的显示效果进行渲染的。由于无从得知 Word 的渲染方案，所以不保证效果与其一致。目前仅支持段落中的文本，后续会支持图片以及表格等内容。
+本项目是参照文档在 Microsoft Office Word 2016 中的显示效果进行渲染的。由于无从得知 Word 的渲染方案，所以不保证效果与其一致。目前仅支持段落中的文本和嵌入式图片，后续会支持表格等内容。
 
-This project is rendered with reference to how the document appears in Microsoft Office Word 2016. Since there is no way to know Word's rendering scheme, there is no guarantee that it will be consistent. Currently, only text in paragraphs is supported. Later, pictures and tables will be supported.
+This project is rendered with reference to how the document appears in Microsoft Office Word 2016. Since there is no way to know Word's rendering scheme, there is no guarantee that it will be consistent. Currently, only text and inline pictures in paragraphs is supported. Later, tables will be supported.
 
 
 
@@ -70,6 +70,10 @@ Page 2
 
 
 ## 更新日志（Release History）
+
+### v1.0.1 (2023-06-02)
+
+- 支持嵌入式图片 (Supports inline pictures)。
 
 ### v1.0.0 (2023-05-29)
 

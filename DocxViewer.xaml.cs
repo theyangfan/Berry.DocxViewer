@@ -79,15 +79,24 @@ namespace Berry.DocxViewer
             if (!fileInfo.Exists || fileInfo.Extension != ".docx") return;
             UIPageArea.Children.Clear();
             UITotalPage.Content = "加载中...";
-            using (var doc = new Berry.Docx.Document(filename, FileShare.ReadWrite))
+            UIScale.Content = "100%";
+            try
             {
-                var document = new Berry.Docx.Visual.Document(doc);
-                UITotalPage.Content = $"共 {document.Pages.Count} 页";
-                foreach (var page in document.Pages)
+                using (var doc = new Berry.Docx.Document(filename, FileShare.ReadWrite))
                 {
-                    UIPageArea.Children.Add(new Page(page, _showHorizontalGridLines, _showVerticalGridLines));
+                    var document = new Berry.Docx.Visual.Document(doc);
+                    UITotalPage.Content = $"共 {document.Pages.Count} 页";
+                    foreach (var page in document.Pages)
+                    {
+                        UIPageArea.Children.Add(new Page(page, _showHorizontalGridLines, _showVerticalGridLines));
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
         #endregion
 
