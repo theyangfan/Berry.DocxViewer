@@ -25,6 +25,7 @@ namespace Berry.DocxViewer
         private double _scale = 1.0;
         private bool _showHorizontalGridLines = false;
         private bool _showVerticalGridLines = false;
+        private List<double> _pageHeightRatio = new List<double>();
         #endregion
 
         #region Constructors
@@ -80,15 +81,23 @@ namespace Berry.DocxViewer
             UIPageArea.Children.Clear();
             UITotalPage.Content = "加载中...";
             UIScale.Content = "100%";
+            _pageHeightRatio.Clear();
             try
             {
                 using (var doc = new Berry.Docx.Document(filename, FileShare.ReadWrite))
                 {
                     var document = new Berry.Docx.Visual.Document(doc);
                     UITotalPage.Content = $"共 {document.Pages.Count} 页";
+                    double totalHeight = 0;
                     foreach (var page in document.Pages)
                     {
                         UIPageArea.Children.Add(new Page(page, _showHorizontalGridLines, _showVerticalGridLines));
+                        _pageHeightRatio.Add(page.Height);
+                        totalHeight += page.Height;
+                    }
+                    for(int i = 0; i < _pageHeightRatio.Count; i++)
+                    {
+                        _pageHeightRatio[i] = _pageHeightRatio[i] / totalHeight;
                     }
                 }
             }
@@ -125,6 +134,18 @@ namespace Berry.DocxViewer
             Load(_filename);
         }
 
+        private void UIScrollArea_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            double height = 0;
+            int num = 0;
+            while(e.VerticalOffset >= height && num < _pageHeightRatio.Count)
+            {
+                height += _pageHeightRatio[num] * UIScrollArea.ScrollableHeight;
+                ++num;
+            }
+            UICurrentPage.Content = $"第 {num} 页，";
+        }
+
         private void OnScaling(object sender, MouseWheelEventArgs e)
         {
             if (Keyboard.Modifiers != ModifierKeys.Control) return;
@@ -143,5 +164,6 @@ namespace Berry.DocxViewer
         }
         #endregion
 
+        
     }
 }
