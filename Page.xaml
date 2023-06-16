@@ -4,11 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Berry.DocxViewer"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              Background="White" Margin="0, 0, 0, 20" BorderThickness="1" BorderBrush="#C6C6C6">
-    <Grid Name="UIPage">
-        <StackPanel Name="UIBody">
-
-        </StackPanel>
-    </Grid>
+    <StackPanel Name="UIBody" HorizontalAlignment="Left" VerticalAlignment="Top">
+    </StackPanel>
 </UserControl>

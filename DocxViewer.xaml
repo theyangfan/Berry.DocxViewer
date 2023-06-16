@@ -45,7 +45,8 @@
         <!-- Body -->
         <ScrollViewer Name="UIScrollArea" Grid.Row="1"
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto"
+                      ScrollChanged="UIScrollArea_ScrollChanged">
             <ScrollViewer.Resources>
                 <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle1}"/>
             </ScrollViewer.Resources>
@@ -63,17 +64,21 @@
             <Border BorderThickness="1" BorderBrush="#d2d2d2"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0"
-                       Name="UITotalPage"
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                    <Label Name="UICurrentPage"
                        Padding="0"
-                       HorizontalContentAlignment="Center"
                        VerticalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="2" 
+                    <Label Name="UITotalPage"
+                       Padding="0"
+                       VerticalContentAlignment="Center"></Label>
+                </StackPanel>
+                
+                <Label Grid.Column="3" 
                        Name="UIScale"
                        Padding="0"
                        HorizontalContentAlignment="Center" 

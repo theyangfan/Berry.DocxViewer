@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using V = Berry.Docx.Visual;
+using VD = Berry.Docx.Visual.Documents;
 using Berry.DocxViewer.Documents;
 
 namespace Berry.DocxViewer
@@ -27,15 +28,16 @@ namespace Berry.DocxViewer
 
             Width = page.Width;
             Height = page.Height;
-
-            UIBody.Margin = new Thickness(page.Padding.Left,
-                page.Padding.Top,
-                page.Padding.Right,
-                page.Padding.Bottom);
-
-            foreach (var p in page.Paragraphs)
+            UIBody.Width = page.Width - page.Padding.Left - page.Padding.Right;
+            UIBody.Height = page.Height - page.Padding.Top - page.Padding.Bottom;
+            UIBody.Margin = new Thickness(page.Padding.Left, page.Padding.Top, 0, 0);
+            
+            foreach (var item in page.ChildItems)
             {
-                UIBody.Children.Add(new Paragraph(p));
+                if(item is VD.Paragraph)
+                    UIBody.Children.Add(new Paragraph((VD.Paragraph)item));
+                else if (item is VD.Table)
+                    UIBody.Children.Add(new Table((VD.Table)item));
             }
 
             // Draw gird lines
